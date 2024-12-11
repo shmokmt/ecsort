@@ -1,0 +1,22 @@
+{
+  "family": "my-task",
+  "containerDefinitions": [
+    {
+      "name": "my-container",
+      "environment": [
+        { "name": "A_VAR", "value": "value1" },
+        { "name": "B_VAR", "value": "value2" }
+      ],
+      "secrets": [
+        {
+          "name": "SECRET_A",
+          "valueFrom": "arn:aws:secretsmanager:region:account-id:secret:mysecretA"
+        },
+        {
+          "name": "SECRET_B",
+          "valueFrom": "arn:aws:secretsmanager:region:account-id:secret:mysecretB"
+        }
+      ]
+    }
+  ]
+}
