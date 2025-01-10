@@ -28,7 +28,7 @@ module Ecsort
       file_content = File.read(file_path)
       sorted_content = Ecsort.sort_ecs_task_definition(file_content)
       File.write(file_path, sorted_content)
-      puts "Processed and sorted: #{file_path}"
+      puts file_path if file_content != sorted_content
     rescue JSON::ParserError
       puts "Skipping invalid JSON file: #{file_path}"
     rescue StandardError => e
