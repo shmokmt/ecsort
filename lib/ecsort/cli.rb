@@ -1,13 +1,28 @@
 require "json"
+require "optparse"
 
 module Ecsort
   class CLI
     def initialize
+      @options = {}
+      OptionParser.new do |opts|
+        opts.banner = <<~BANNER
+          Usage: ecsort [--recursive, -r] [target]
+            --recursive, -r
+                  Also process files in subdirectories. By default, only the given directroy (or current directroy) is processed.
+        BANNER
+
+        opts.on("-r", "--recursive", "Process directories recursively") do |r|
+          @options[:recursive] = r
+        end
+      end.parse!
+
       @path = ARGV[0]
+      @recursive = @options[:recursive] || false
     end
 
     def run
-      raise NoArgumentError if @path.nil?
+      @path = "." if @path.nil?
 
       if File.directory?(@path)
         process_directory(@path)
@@ -19,7 +34,14 @@ module Ecsort
     end
 
     def process_directory(directory_path)
-      Dir.glob(File.join(directory_path, "**", "*.json")).each do |file|
+      pattern = if directory_path == "."
+                  "*.json"
+                elsif @recursive
+                  File.join(directory_path, "**", "*.json")
+                else
+                  File.join(directory_path, "*.json")
+                end
+      Dir.glob(pattern).each do |file|
         process_file(file)
       end
     end
