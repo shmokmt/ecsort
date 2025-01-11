@@ -7,7 +7,7 @@ module Ecsort
     end
 
     def run
-      raise NoArgumentError if @path.nil?
+      raise "." if @path.nil?
 
       if File.directory?(@path)
         process_directory(@path)
@@ -19,7 +19,12 @@ module Ecsort
     end
 
     def process_directory(directory_path)
-      Dir.glob(File.join(directory_path, "**", "*.json")).each do |file|
+      pattern = if directory_path == "."
+                  "*.json"
+                else
+                  File.join(directory_path, "**", "*.json")
+                end
+      Dir.glob(pattern).each do |file|
         process_file(file)
       end
     end

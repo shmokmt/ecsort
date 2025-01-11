@@ -5,5 +5,4 @@ require_relative "ecsort/cli"
 
 module Ecsort
   class InvalidPathError < StandardError; end
-  class NoArgumentError < StandardError; end
 end
