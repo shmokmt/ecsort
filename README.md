@@ -1,8 +1,5 @@
 # ecsort
 
-> [!WARNING]
-> This is a PoC project. Breaking changes may occur without notice.
-
 It's a lightweight tool that sorts environments and secrets used in Amazon ECS Task Definitions by name.
 
 ## Installation
@@ -15,10 +12,11 @@ gem specific_install -l 'https://github.com/shmokmt/ecsort'
 ## Usage
 
 ```bash
-ecsort [file/dir]
+Usage: ecsort [--recursive, -r] [target]
+  --recursive, -r
+        Also process files in subdirectories. By default, only the given directroy (or current directroy) is processed.
 ```
 
-A file or directory must be given as an argument.
 
 ## Development
 
