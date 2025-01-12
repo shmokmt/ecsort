@@ -5,8 +5,7 @@ It's a lightweight tool that sorts environments and secrets used in Amazon ECS T
 ## Installation
 
 ```bash
-gem install specific_install
-gem specific_install -l 'https://github.com/shmokmt/ecsort'
+gem install ecsort
 ```
 
 ## Usage
