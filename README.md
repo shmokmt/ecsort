@@ -4,13 +4,13 @@ It's a lightweight tool that sorts environments and secrets used in Amazon ECS T
 
 ## Installation
 
-```bash
+```
 gem install ecsort
 ```
 
 ## Usage
 
-```bash
+```
 Usage: ecsort [--recursive, -r] [target]
   --recursive, -r
         Also process files in subdirectories. By default, only the given directroy (or current directroy) is processed.
